@@ -27,10 +27,15 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FirebaseAuth.instance.signOut();
-    return const MaterialApp(
+    return MaterialApp(
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
-      home: LoginPage()
+      home: const LoginPage(),
+      theme: ThemeData(
+        navigationBarTheme: const NavigationBarThemeData(
+          indicatorColor: Colors.deepOrange,          
+        ),
+      ),
     );
   }
 }
