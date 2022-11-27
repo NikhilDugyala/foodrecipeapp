@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sampleproject/home_page.dart';
 import 'package:sampleproject/profile.dart';
+import 'package:sampleproject/screens/search_screen.dart';
 
 import 'app_bar_widget.dart';
 
@@ -18,11 +19,12 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarWidget(),
-      body: currentPageIndex == 0 ? const HomePage() : const ProfilePage(),
+      body: currentPageIndex == 0 ? const HomePage() : currentPageIndex == 1 ? const ProfilePage() : SearchScreen(),
       bottomNavigationBar: NavigationBar(
         destinations: const [
           NavigationDestination(icon: Icon(Icons.home), label: "Home"),
           NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
+          NavigationDestination(icon: Icon(Icons.note), label: 'Plan'),
         ],
         backgroundColor: Colors.white,
         onDestinationSelected: (int index) => {
