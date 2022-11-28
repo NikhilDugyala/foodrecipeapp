@@ -46,7 +46,7 @@ class ApiService {
       '/recipes/mealplans/generate',
       parameters,
     );
-
+    print("The URI: ${uri}");
     //Our header specifies that we want the request to return a json object
     Map<String, String> headers = {
       HttpHeaders.contentTypeHeader: 'application/json',

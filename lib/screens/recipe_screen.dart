@@ -8,9 +8,10 @@ class RecipeScreen extends StatefulWidget {
   final String mealType;
   final Recipe recipe;
 
-  RecipeScreen({required this.mealType, required this.recipe});
+  const RecipeScreen({super.key, required this.mealType, required this.recipe});
 
   @override
+  // ignore: library_private_types_in_public_api
   _RecipeScreenState createState() => _RecipeScreenState();
 }
 
@@ -20,7 +21,13 @@ class _RecipeScreenState extends State<RecipeScreen> {
     return Scaffold(
       //AppBar is widget.mealType
       appBar: AppBar(
-        title: Text(widget.mealType),
+        title: Text(widget.mealType,
+          style: const TextStyle(
+            color: Colors.deepOrange,
+            fontWeight: FontWeight.bold
+          ),
+        ), 
+        backgroundColor: Colors.black,
       ),
       /**
        * Body is a Webview. Ensure you have imported webview flutter.

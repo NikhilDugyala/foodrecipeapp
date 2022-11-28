@@ -14,12 +14,12 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   int currentPageIndex = 0;
-
+  double bmi = 0; 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarWidget(),
-      body: currentPageIndex == 0 ? const HomePage() : currentPageIndex == 1 ? const ProfilePage() : SearchScreen(),
+      body: currentPageIndex == 0 ? const HomePage() : currentPageIndex == 1 ? ProfilePage(/*bmi: bmi*/) : SearchScreen(),
       bottomNavigationBar: NavigationBar(
         destinations: const [
           NavigationDestination(icon: Icon(Icons.home), label: "Home"),

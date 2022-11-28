@@ -21,7 +21,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
         color: Colors.deepOrange
        ),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
     );
   }
 }

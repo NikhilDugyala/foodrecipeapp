@@ -17,7 +17,7 @@ class _SearchScreenState extends State<SearchScreen> {
   diet - our selected diet
   */
 
-  List<String> _diets = [
+  final List<String> _diets = [
     //List of diets that lets spoonacular filter
     'None',
     'Gluten Free',
@@ -45,6 +45,7 @@ class _SearchScreenState extends State<SearchScreen> {
       targetCalories: _targetCalories.toInt(),
       diet: _diet,
     );
+    // ignore: use_build_context_synchronously
     Navigator.push(
         context,
         MaterialPageRoute(
@@ -58,7 +59,7 @@ class _SearchScreenState extends State<SearchScreen> {
     image using a Network Image. The image loads and is the background of 
     the page
     */
-    // ignore: unused_local_variable
+    // ignore: unused_local_variable, prefer_typing_uninitialized_variables
     var body1;
     return Scaffold(
       body: Container(
@@ -85,7 +86,7 @@ class _SearchScreenState extends State<SearchScreen> {
               children: <Widget>[
                 //Text widget for our app's title
                 const Text(
-                  'My Daily Meal Planner',
+                  'Meal Planner',
                   style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
@@ -153,7 +154,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 //FlatButton where onPressed() triggers a function called _searchMealPlan
                 ElevatedButton(
                     onPressed: _searchMealPlan,
-                    child: const Text('Caluclate Meal Plan'))
+                    child: const Text('Calculate Meal Plan'))
               ],
             ),
           ),

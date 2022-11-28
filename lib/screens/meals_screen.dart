@@ -9,9 +9,10 @@ import '../services/api_services.dart';
 class MealsScreen extends StatefulWidget {
   //It returns a final mealPlan variable
   final MealPlan mealPlan;
-  MealsScreen({required this.mealPlan});
+  const MealsScreen({super.key, required this.mealPlan});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MealsScreenState createState() => _MealsScreenState();
 }
 
@@ -22,65 +23,55 @@ The child is a column widget that returns nutrient information in Rows
  */
   _buildTotalNutrientsCard() {
     return Container(
-      height: 140,
-      margin: EdgeInsets.all(20),
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      height: 200,
+      margin: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.deepOrange,
           borderRadius: BorderRadius.circular(15),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
                 color: Colors.black12, offset: Offset(0, 2), blurRadius: 6)
           ]),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          const Padding(
+            padding: EdgeInsets.only(left:0, bottom: 20, right: 0, top:0),
+            child: Text(
+              'Nutrition to take!',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
           Text(
-            'Total Nutrients',
-            style: TextStyle(
-              fontSize: 24,
+            'Calories: ${widget.mealPlan.calories.toString()} cal',
+            style: const TextStyle(
+              fontSize: 20,
               fontWeight: FontWeight.w600,
             ),
           ),
-          SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                'Calories: ${widget.mealPlan.calories.toString()} cal',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              Text(
-                'Protein: ${widget.mealPlan.protein.toString()} g',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
+          Text(
+            'Protein: ${widget.mealPlan.protein.toString()} g',
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+            ),
           ),
-          SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                'Fat: ${widget.mealPlan.fat.toString()} g',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              Text(
-                'Carb: ${widget.mealPlan.carbs.toString()} cal',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
+          Text(
+            'Fat: ${widget.mealPlan.fat.toString()} g',
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          Text(
+            'Carb: ${widget.mealPlan.carbs.toString()} cal',
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ],
       ),
@@ -115,41 +106,45 @@ The child is a column widget that returns nutrient information in Rows
         Container(
           height: 220,
           width: double.infinity,
-          margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          margin: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 45),
           decoration: BoxDecoration(
               color: Colors.white,
               image: DecorationImage(
-                image: NetworkImage(meal.imgURL),
+                image: mealType == "Breakfast" ? const AssetImage("images/breakfast.png") :
+                  mealType == "Lunch" ? const AssetImage("images/lunch.png") :
+                  const AssetImage("images/dinner.png"),
                 fit: BoxFit.cover,
               ),
               borderRadius: BorderRadius.circular(15),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                     color: Colors.black12, offset: Offset(0, 2), blurRadius: 6)
               ]),
         ),
         //Second widget is a Container that has 2 text widgets
         Container(
-          margin: EdgeInsets.all(60),
-          padding: EdgeInsets.all(10),
-          color: Colors.white70,
+          margin: const EdgeInsets.all(60),
+          padding: const EdgeInsets.all(10),
+          color: Colors.transparent,
           child: Column(
             children: <Widget>[
-              Text(
-                //mealtype
-                mealType,
-                style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.5),
+              Center(
+                child: Text(
+                  mealType,
+                  style: const TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      letterSpacing: 1.5),
+                ),
               ),
-              Text(
-                //mealtitle
-                meal.title,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
-                overflow: TextOverflow.ellipsis,
-              )
+              Center(
+                child: Text(
+                  meal.title,
+                  style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w600, color: Colors.white,),
+                )
+              ),
             ],
           ),
         )
@@ -177,7 +172,15 @@ mealType returns Breakfast, Lunch or Dinner, depending on the index value
   Widget build(BuildContext context) {
     return Scaffold(
       //has an appBar
-      appBar: AppBar(title: Text('Your Meal Plan')),
+      appBar: AppBar(
+        title: const Text('Your Meal Plan',
+          style: TextStyle(
+            color: Colors.deepOrange,
+            fontWeight: FontWeight.bold
+          ),
+        ), 
+        backgroundColor: Colors.black,
+      ),
       //and body as a ListView builder
       body: ListView.builder(
           /*

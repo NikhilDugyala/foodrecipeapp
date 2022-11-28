@@ -67,6 +67,9 @@ flutter:
   assets:
     - images/background.jpg
     - images/google_logo.png
+    - images/breakfast.png
+    - images/lunch.png
+    - images/dinner.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
